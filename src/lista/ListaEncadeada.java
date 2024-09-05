@@ -33,7 +33,7 @@ public class ListaEncadeada<T> {
 		No<T> temp = head;
 		if (head == null) {
 			head = novoNo;
-			
+
 		} else {
 			while (temp.getProximo() != null) {
 				temp = temp.getProximo();
@@ -43,14 +43,20 @@ public class ListaEncadeada<T> {
 		tamanho++;
 	}
 
-	public String findByName(T elemento) {
+	public String searchByName(String titulo) {
 		String msg = "Elemento não encontrado";
 		No<T> temp = head;
+		Livro pesquisar = null;
+
 		while (temp != null) {
-			if (temp.getElemento() == elemento) {
+			pesquisar = (Livro) temp.getElemento();
+			
+			if (pesquisar.getTitulo().equalsIgnoreCase(titulo)) {
 				msg = "Elemento encontrado";
+				break;
+			} else {
+				temp = temp.getProximo();
 			}
-			temp = temp.getProximo();
 		}
 		return msg;
 	}
@@ -62,15 +68,15 @@ public class ListaEncadeada<T> {
 	public int getSize() {
 		return tamanho;
 	}
-	
+
 	public String menu() {
-		return	"""
-			Digite uma opção:
-			1) Adicionar livro	
-			2) Listar livros
-			3) Pesquisar livro
-			5) Sair
-				""";
+		return """
+				Digite uma opção:
+				1) Adicionar livro
+				2) Listar livros
+				3) Pesquisar livro
+				5) Sair
+					""";
 	}
 
 }

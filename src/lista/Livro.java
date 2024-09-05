@@ -24,5 +24,9 @@ public class Livro {
 		this.anoPublicacao = anoPublicacao;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Titulo: " + titulo + " Autor: " + autor + " Ano de Publicação: " + anoPublicacao;
+	}
+
 }
