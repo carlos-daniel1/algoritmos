@@ -44,7 +44,7 @@ public class ListaEncadeada<T> {
 	}
 
 	public String searchByName(String titulo) {
-		String msg = "Elemento não encontrado";
+		String msg = "Livro não encontrado";
 		No<T> temp = head;
 		Livro pesquisar = null;
 
@@ -52,7 +52,7 @@ public class ListaEncadeada<T> {
 			pesquisar = (Livro) temp.getElemento();
 			
 			if (pesquisar.getTitulo().equalsIgnoreCase(titulo)) {
-				msg = "Elemento encontrado";
+				msg = String.format("Livro %s encontrado", titulo);
 				break;
 			} else {
 				temp = temp.getProximo();
@@ -74,7 +74,7 @@ public class ListaEncadeada<T> {
 				Digite uma opção:
 				1) Adicionar livro
 				2) Listar livros
-				3) Pesquisar livro
+				3) Pesquisar livro pelo nome
 				5) Sair
 					""";
 	}
