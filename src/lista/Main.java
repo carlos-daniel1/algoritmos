@@ -1,28 +1,24 @@
 package lista;
 
-import java.util.LinkedList;
-
 import javax.swing.JOptionPane;
 
 public class Main {
 	static ListaEncadeada<Livro> lista = new ListaEncadeada<>();
-	static LinkedList<String> oi = new LinkedList<String>();
 
 	public static void main(String[] args) {
-		
+
 		Livro testeLivro = new Livro();
 		testeLivro.setTitulo("Livro teste");
 		testeLivro.setAutor("daniel");
 		testeLivro.setAnoPublicacao(2010);
 		lista.addLast(testeLivro);
-		
+
 		Livro testeLivro2 = new Livro();
 		testeLivro2.setTitulo("testando 2");
 		testeLivro2.setAutor("daniel");
 		testeLivro2.setAnoPublicacao(2016);
 		lista.addLast(testeLivro2);
-		
-		
+
 		Livro testeLivro3 = new Livro();
 		testeLivro3.setTitulo("testando 3");
 		testeLivro3.setAutor("daniel");
@@ -41,27 +37,14 @@ public class Main {
 				adicionarLivro();
 
 			} else if (opcao.equals("2")) {
-
-				if (lista.getSize() > 0) {
-					JOptionPane.showMessageDialog(null, lista.getAllElements());
-				} else {
-					JOptionPane.showMessageDialog(null, "Não há livros para listar", "Livraria Deus é bom", 1);
-				}
+				listarLivros();
 
 			} else if (opcao.equals("3")) {
-				if (lista.getSize() > 0) {
-					String pesquisar = JOptionPane.showInputDialog(null, "Digite o titulo do livro para pesquisar",
-							"Livraria Deus é bom", 1);
-
-					JOptionPane.showMessageDialog(null, lista.searchByName(pesquisar), "Livraria Deus é bom", 1);
-
-				} else {
-					JOptionPane.showMessageDialog(null, "Não há livros cadastrados!", "Livraria Deus é bom", 1);
-				}
+				pesquisarLivro();
 
 			} else if (opcao.equals("4")) {
 				removerLivro();
-				
+
 			} else if (opcao.equals("5")) {
 				JOptionPane.showMessageDialog(null, "Obrigado por usar nosso sistema!", "Livraria Deus é bom", 1);
 
@@ -102,18 +85,39 @@ public class Main {
 		lista.addLast(novoLivro);
 		JOptionPane.showMessageDialog(null, "Livro adicionado com sucesso!", "Livraria Deus é bom", 1);
 	}
-	
+
+	private static void listarLivros() {
+		if (lista.getSize() > 0) {
+			JOptionPane.showMessageDialog(null, lista.getAllElements());
+		} else {
+			JOptionPane.showMessageDialog(null, "Não há livros para listar", "Livraria Deus é bom", 1);
+		}
+	}
+
+	private static void pesquisarLivro() {
+		if (lista.getSize() > 0) {
+			String pesquisar = JOptionPane.showInputDialog(null, "Digite o titulo do livro para pesquisar",
+					"Livraria Deus é bom", 1);
+
+			JOptionPane.showMessageDialog(null, lista.searchByName(pesquisar), "Livraria Deus é bom", 1);
+
+		} else {
+			JOptionPane.showMessageDialog(null, "Não há livros cadastrados!", "Livraria Deus é bom", 1);
+		}
+	}
+
 	private static void removerLivro() {
-		if(lista.getSize() > 0) {
+		if (lista.getSize() > 0) {
 			String removerStr = JOptionPane.showInputDialog(null,
 					lista.getAllElements() + "\nDigite o índice do livro para remover", "Livraria Deus é bom", 1);
+			if(removerStr == null) return;
 
 			boolean isNumeric = removerStr.chars().allMatch(Character::isDigit);
 
 			if (!removerStr.equals("") && isNumeric) {
 				int remover = Integer.parseInt(removerStr);
 				JOptionPane.showMessageDialog(null, lista.remove(remover), "Livraria Deus é bom", 1);
-				
+
 			} else {
 				JOptionPane.showMessageDialog(null, "Digite um número!", "Livraria Deus é bom", 2);
 			}
