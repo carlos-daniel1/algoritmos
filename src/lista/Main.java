@@ -130,12 +130,12 @@ public class Main {
 	}
 	
 	private static void ordenarLivros() {
-		if(lista.getSize() > 0) {
+		if(lista.getSize() > 1) {
 			lista.bubbleSort();
 			JOptionPane.showMessageDialog(null, "Livros ordenados com sucesso!", "Livraria Deus é bom", 1);
 			return;
 		}
-		JOptionPane.showMessageDialog(null, "Não há livros cadastrados!", "Livraria Deus é bom", 1);
+		JOptionPane.showMessageDialog(null, "Não há livros suficientes para ordenar!", "Livraria Deus é bom", 1);
 	}
 
 }

@@ -87,7 +87,6 @@ public class ListaEncadeada<T> {
 	}
 	
     public void bubbleSort() {
-    if (tamanho > 1) {
         for (int i = 0; i < tamanho; i++ ) {
             No<T> atual = head;
             No<T> prox = head.getProximo();
@@ -107,7 +106,6 @@ public class ListaEncadeada<T> {
                 prox = prox.getProximo();                   
             } 
         }
-    }
 }
 
 	public int getSize() {
