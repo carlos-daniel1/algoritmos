@@ -106,7 +106,7 @@ public class Main {
 	private static void removerLivro() {
 		if(lista.getSize() > 0) {
 			String removerStr = JOptionPane.showInputDialog(null,
-					lista.getAllElements() + "\nDigite o id do livro para remover", "Livraria Deus é bom", 1);
+					lista.getAllElements() + "\nDigite o índice do livro para remover", "Livraria Deus é bom", 1);
 
 			boolean isNumeric = removerStr.chars().allMatch(Character::isDigit);
 

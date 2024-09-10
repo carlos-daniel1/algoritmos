@@ -23,7 +23,7 @@ public class ListaEncadeada<T> {
 		No<T> temp = head;
 		int contador = 1;
 		while (temp != null) {
-			msg += String.format("Id: %d | %s \n", contador, temp.getElemento());
+			msg += String.format("Indíce: %d | %s \n", contador, temp.getElemento());
 			temp = temp.getProximo();
 			contador++;
 		}
@@ -63,32 +63,28 @@ public class ListaEncadeada<T> {
 	}
 
 	public String remove(int index) {
+		if (index > tamanho || index <= 0) return "Livro não cadastrado"; 
+		
 		No<T> temp = head;
 		No<T> prev = null;
-		String msg = "Livro REMOVIDO: ";
+		String mensagem = "Livro REMOVIDO: ";
 
 		if (index == 1) {
-			msg += head.getElemento();
+			mensagem += head.getElemento();
 			head = head.getProximo();
 			tamanho--;
-			return msg;
+			return mensagem;
 		}
-		
-		for (int i = 1; temp != null && i < index; i++) {
+		for (int i = 1; i < index; i++) {
 			prev = temp;
 			temp = temp.getProximo();
 		}
-		if (temp != null && index != 0) {
-			msg += prev.getProximo().getElemento();
+			mensagem += prev.getProximo().getElemento();
 			prev.setProximo(temp.getProximo());
 			tamanho--;
-			
-		} else {
-			msg = "Livro não encontrado";
-		}
-		return msg;
+		
+		return mensagem;
 	}
-	
 
 	public T getFirst() {
 		return head.getElemento();
