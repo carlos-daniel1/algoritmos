@@ -21,9 +21,11 @@ public class ListaEncadeada<T> {
 	public String getAllElements() {
 		String msg = "";
 		No<T> temp = head;
+		int contador = 1;
 		while (temp != null) {
-			msg += temp.getElemento() + "\n";
+			msg += String.format("Id: %d | %s \n", contador, temp.getElemento());
 			temp = temp.getProximo();
+			contador++;
 		}
 		return msg;
 	}
@@ -33,7 +35,6 @@ public class ListaEncadeada<T> {
 		No<T> temp = head;
 		if (head == null) {
 			head = novoNo;
-
 		} else {
 			while (temp.getProximo() != null) {
 				temp = temp.getProximo();
@@ -50,9 +51,9 @@ public class ListaEncadeada<T> {
 
 		while (temp != null) {
 			pesquisar = (Livro) temp.getElemento();
-			
+
 			if (pesquisar.getTitulo().equalsIgnoreCase(titulo)) {
-				msg = String.format("Livro %s encontrado", titulo);
+				msg = String.format("Livro %s encontrado", pesquisar.getTitulo());
 				break;
 			} else {
 				temp = temp.getProximo();
@@ -60,6 +61,34 @@ public class ListaEncadeada<T> {
 		}
 		return msg;
 	}
+
+	public String remove(int index) {
+		No<T> temp = head;
+		No<T> prev = null;
+		String msg = "Livro REMOVIDO: ";
+
+		if (index == 1) {
+			msg += head.getElemento();
+			head = head.getProximo();
+			tamanho--;
+			return msg;
+		}
+		
+		for (int i = 1; temp != null && i < index; i++) {
+			prev = temp;
+			temp = temp.getProximo();
+		}
+		if (temp != null && index != 0) {
+			msg += prev.getProximo().getElemento();
+			prev.setProximo(temp.getProximo());
+			tamanho--;
+			
+		} else {
+			msg = "Livro não encontrado";
+		}
+		return msg;
+	}
+	
 
 	public T getFirst() {
 		return head.getElemento();
@@ -75,6 +104,7 @@ public class ListaEncadeada<T> {
 				1) Adicionar livro
 				2) Listar livros
 				3) Pesquisar livro pelo nome
+				4) Remover livro
 				5) Sair
 					""";
 	}
