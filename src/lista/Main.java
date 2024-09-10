@@ -27,7 +27,7 @@ public class Main {
 
 		String opcao = "1";
 
-		while (!opcao.equals("5")) {
+		while (!opcao.equals("6")) {
 			opcao = JOptionPane.showInputDialog(null, lista.menu(), "Livraria Deus é bom", 1);
 
 			if (opcao == null) {
@@ -46,8 +46,11 @@ public class Main {
 				removerLivro();
 
 			} else if (opcao.equals("5")) {
-				JOptionPane.showMessageDialog(null, "Obrigado por usar nosso sistema!", "Livraria Deus é bom", 1);
+				ordenarLivros();
 
+			} else if(opcao.equals("6")) {
+				JOptionPane.showMessageDialog(null, "Obrigado por usar nosso sistema!", "Livraria Deus é bom", 1);
+				
 			} else {
 				JOptionPane.showMessageDialog(null, "Opção inválida!", "Livraria Deus é bom", 2);
 			}
@@ -121,6 +124,15 @@ public class Main {
 			} else {
 				JOptionPane.showMessageDialog(null, "Digite um número!", "Livraria Deus é bom", 2);
 			}
+			return;
+		}
+		JOptionPane.showMessageDialog(null, "Não há livros cadastrados!", "Livraria Deus é bom", 1);
+	}
+	
+	private static void ordenarLivros() {
+		if(lista.getSize() > 0) {
+			lista.bubbleSort();
+			JOptionPane.showMessageDialog(null, "Livros ordenados com sucesso!", "Livraria Deus é bom", 1);
 			return;
 		}
 		JOptionPane.showMessageDialog(null, "Não há livros cadastrados!", "Livraria Deus é bom", 1);

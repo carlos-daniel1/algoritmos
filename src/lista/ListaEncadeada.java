@@ -66,7 +66,7 @@ public class ListaEncadeada<T> {
 		if (index > tamanho || index <= 0) return "Livro não cadastrado"; 
 		
 		No<T> temp = head;
-		No<T> prev = null;
+		No<T> anterior = null;
 		String mensagem = "Livro REMOVIDO: ";
 
 		if (index == 1) {
@@ -76,19 +76,39 @@ public class ListaEncadeada<T> {
 			return mensagem;
 		}
 		for (int i = 1; i < index; i++) {
-			prev = temp;
+			anterior = temp;
 			temp = temp.getProximo();
 		}
-			mensagem += prev.getProximo().getElemento();
-			prev.setProximo(temp.getProximo());
+			mensagem += anterior.getProximo().getElemento();
+			anterior.setProximo(temp.getProximo());
 			tamanho--;
 		
 		return mensagem;
 	}
-
-	public T getFirst() {
-		return head.getElemento();
-	}
+	
+    public void bubbleSort() {
+    if (tamanho > 1) {
+        for (int i = 0; i < tamanho; i++ ) {
+            No<T> atual = head;
+            No<T> prox = head.getProximo();
+            Livro livroAtual = null;
+            Livro livroProx = null;
+            
+            for (int j = 0; j < tamanho - 1 - i; j++) {
+            	  livroAtual = (Livro) atual.getElemento();
+                  livroProx = (Livro) prox.getElemento();
+                  
+                if (livroAtual.getAnoPublicacao() > livroProx.getAnoPublicacao()) {
+                    T temp = atual.getElemento();
+                    atual.setElemento(prox.getElemento());
+                    prox.setElemento(temp);
+                } 
+                atual = prox;
+                prox = prox.getProximo();                   
+            } 
+        }
+    }
+}
 
 	public int getSize() {
 		return tamanho;
@@ -101,7 +121,8 @@ public class ListaEncadeada<T> {
 				2) Listar livros
 				3) Pesquisar livro pelo nome
 				4) Remover livro
-				5) Sair
+				5) Ordenar livros por ano
+				6) Sair
 					""";
 	}
 
