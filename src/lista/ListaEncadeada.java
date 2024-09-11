@@ -10,14 +10,6 @@ public class ListaEncadeada<T> {
 		this.tamanho = 0;
 	}
 
-	public void addFirst(T elemento) {
-		No<T> novoNo = new No<T>(elemento);
-		No<T> temp = head;
-		head = novoNo;
-		head.setProximo(temp);
-		tamanho++;
-	}
-
 	public String getAllElements() {
 		String msg = "";
 		No<T> temp = head;
@@ -30,7 +22,7 @@ public class ListaEncadeada<T> {
 		return msg;
 	}
 
-	public void addLast(T elemento) {
+	public void add(T elemento) {
 		No<T> novoNo = new No<T>(elemento);
 		No<T> temp = head;
 		if (head == null) {
@@ -97,7 +89,7 @@ public class ListaEncadeada<T> {
             	  livroAtual = (Livro) atual.getElemento();
                   livroProx = (Livro) prox.getElemento();
                   
-                if (livroAtual.getAnoPublicacao() > livroProx.getAnoPublicacao()) {
+                if (livroAtual.getTitulo().compareToIgnoreCase(livroProx.getTitulo()) > 0) {
                     T temp = atual.getElemento();
                     atual.setElemento(prox.getElemento());
                     prox.setElemento(temp);
@@ -111,6 +103,7 @@ public class ListaEncadeada<T> {
 	public int getSize() {
 		return tamanho;
 	}
+	
 
 	public String menu() {
 		return """
@@ -119,9 +112,30 @@ public class ListaEncadeada<T> {
 				2) Listar livros
 				3) Pesquisar livro pelo nome
 				4) Remover livro
-				5) Ordenar livros por ano
+				5) Ordenar livros por titulo
 				6) Sair
 					""";
+	}
+	
+	
+	public void addLivros(ListaEncadeada<Livro> lista) {
+		Livro testeLivro = new Livro();
+		testeLivro.setTitulo("Livro C");
+		testeLivro.setAutor("teste");
+		testeLivro.setAnoPublicacao(2010);
+		lista.add(testeLivro);
+
+		Livro testeLivro2 = new Livro();
+		testeLivro2.setTitulo("Livro B");
+		testeLivro2.setAutor("teste");
+		testeLivro2.setAnoPublicacao(2016);
+		lista.add(testeLivro2);
+
+		Livro testeLivro3 = new Livro();
+		testeLivro3.setTitulo("abc livro");
+		testeLivro3.setAutor("teste");
+		testeLivro3.setAnoPublicacao(2015);
+		lista.add(testeLivro3);
 	}
 
 }

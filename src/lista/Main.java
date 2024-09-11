@@ -6,25 +6,8 @@ public class Main {
 	static ListaEncadeada<Livro> lista = new ListaEncadeada<>();
 
 	public static void main(String[] args) {
-
-		Livro testeLivro = new Livro();
-		testeLivro.setTitulo("Livro teste");
-		testeLivro.setAutor("daniel");
-		testeLivro.setAnoPublicacao(2010);
-		lista.addLast(testeLivro);
-
-		Livro testeLivro2 = new Livro();
-		testeLivro2.setTitulo("testando 2");
-		testeLivro2.setAutor("daniel");
-		testeLivro2.setAnoPublicacao(2016);
-		lista.addLast(testeLivro2);
-
-		Livro testeLivro3 = new Livro();
-		testeLivro3.setTitulo("testando 3");
-		testeLivro3.setAutor("daniel");
-		testeLivro3.setAnoPublicacao(2015);
-		lista.addLast(testeLivro3);
-
+		lista.addLivros(lista);
+		
 		String opcao = "1";
 
 		while (!opcao.equals("6")) {
@@ -60,6 +43,10 @@ public class Main {
 
 	private static void adicionarLivro() {
 		String titulo = JOptionPane.showInputDialog(null, "Digite o nome do livro", "Livraria Deus é bom", 1);
+		if(!lista.searchByName(titulo).equals("Livro não encontrado")) {
+			JOptionPane.showMessageDialog(null, "Livro já cadastrado no sistema!", "Livraria Deus é bom", 2);
+			return;
+		}
 		if (titulo == null)
 			return;
 
@@ -85,7 +72,7 @@ public class Main {
 		novoLivro.setAutor(autor);
 		novoLivro.setAnoPublicacao(ano);
 
-		lista.addLast(novoLivro);
+		lista.add(novoLivro);
 		JOptionPane.showMessageDialog(null, "Livro adicionado com sucesso!", "Livraria Deus é bom", 1);
 	}
 
@@ -133,6 +120,7 @@ public class Main {
 		if(lista.getSize() > 1) {
 			lista.bubbleSort();
 			JOptionPane.showMessageDialog(null, "Livros ordenados com sucesso!", "Livraria Deus é bom", 1);
+			JOptionPane.showMessageDialog(null, lista.getAllElements(), "Livraria Deus é bom", 1);
 			return;
 		}
 		JOptionPane.showMessageDialog(null, "Não há livros suficientes para ordenar!", "Livraria Deus é bom", 1);
