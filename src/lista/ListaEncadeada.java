@@ -119,22 +119,13 @@ public class ListaEncadeada<T> {
 	
 	
 	public void addLivros(ListaEncadeada<Livro> lista) {
-		Livro testeLivro = new Livro();
-		testeLivro.setTitulo("Livro C");
-		testeLivro.setAutor("teste");
-		testeLivro.setAnoPublicacao(2010);
+		Livro testeLivro = new Livro("Livro C", "teste", 2010);
 		lista.add(testeLivro);
 
-		Livro testeLivro2 = new Livro();
-		testeLivro2.setTitulo("Livro B");
-		testeLivro2.setAutor("teste");
-		testeLivro2.setAnoPublicacao(2016);
+		Livro testeLivro2 = new Livro("Livro B", "teste", 2016);
 		lista.add(testeLivro2);
 
-		Livro testeLivro3 = new Livro();
-		testeLivro3.setTitulo("abc livro");
-		testeLivro3.setAutor("teste");
-		testeLivro3.setAnoPublicacao(2015);
+		Livro testeLivro3 = new Livro("abc livro", "teste", 2015);
 		lista.add(testeLivro3);
 	}
 

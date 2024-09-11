@@ -67,12 +67,9 @@ public class Main {
 
 		int ano = Integer.parseInt(anoStr);
 
-		Livro novoLivro = new Livro();
-		novoLivro.setTitulo(titulo);
-		novoLivro.setAutor(autor);
-		novoLivro.setAnoPublicacao(ano);
-
+		Livro novoLivro = new Livro(titulo, autor, ano);
 		lista.add(novoLivro);
+		
 		JOptionPane.showMessageDialog(null, "Livro adicionado com sucesso!", "Livraria Deus é bom", 1);
 	}
 
