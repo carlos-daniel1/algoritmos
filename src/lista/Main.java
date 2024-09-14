@@ -42,16 +42,17 @@ public class Main {
 	}
 
 	private static void adicionarLivro() {
-		String titulo = JOptionPane.showInputDialog(null, "Digite o nome do livro", "Livraria Deus é bom", 1);
-		if(!lista.searchByName(titulo).equals("Livro não encontrado")) {
+		String titulo = JOptionPane.showInputDialog(null, "Digite o titulo do livro", "Livraria Deus é bom", 1);
+		if (titulo == null || titulo.equals(""))
+			return;
+		
+		if(!lista.searchByTitle(titulo).equals("Livro não encontrado")) {
 			JOptionPane.showMessageDialog(null, "Livro já cadastrado no sistema!", "Livraria Deus é bom", 2);
 			return;
 		}
-		if (titulo == null)
-			return;
 
 		String autor = JOptionPane.showInputDialog(null, "Digite o autor do livro", "Livraria Deus é bom", 1);
-		if (autor == null)
+		if (autor == null || autor.equals(""))
 			return;
 
 		String anoStr = JOptionPane.showInputDialog(null, "Digite o ano de publicação do livro", "Livraria Deus é bom",
@@ -85,8 +86,9 @@ public class Main {
 		if (lista.getSize() > 0) {
 			String pesquisar = JOptionPane.showInputDialog(null, "Digite o titulo do livro para pesquisar",
 					"Livraria Deus é bom", 1);
+			if(pesquisar == null) return;
 
-			JOptionPane.showMessageDialog(null, lista.searchByName(pesquisar), "Livraria Deus é bom", 1);
+			JOptionPane.showMessageDialog(null, lista.searchByTitle(pesquisar), "Livraria Deus é bom", 1);
 
 		} else {
 			JOptionPane.showMessageDialog(null, "Não há livros cadastrados!", "Livraria Deus é bom", 1);

@@ -36,7 +36,7 @@ public class ListaEncadeada<T> {
 		tamanho++;
 	}
 
-	public String searchByName(String titulo) {
+	public String searchByTitle(String titulo) {
 		String msg = "Livro não encontrado";
 		No<T> temp = head;
 		Livro pesquisar = null;
@@ -110,7 +110,7 @@ public class ListaEncadeada<T> {
 				Digite uma opção:
 				1) Adicionar livro
 				2) Listar livros
-				3) Pesquisar livro pelo nome
+				3) Pesquisar livro pelo titulo
 				4) Remover livro
 				5) Ordenar livros por titulo
 				6) Sair
@@ -119,13 +119,13 @@ public class ListaEncadeada<T> {
 	
 	
 	public void addLivros(ListaEncadeada<Livro> lista) {
-		Livro testeLivro = new Livro("Livro C", "teste", 2010);
+		Livro testeLivro = new Livro("Java", "teste", 2010);
 		lista.add(testeLivro);
 
-		Livro testeLivro2 = new Livro("Livro B", "teste", 2016);
+		Livro testeLivro2 = new Livro("BD NoSQL", "teste", 2016);
 		lista.add(testeLivro2);
 
-		Livro testeLivro3 = new Livro("abc livro", "teste", 2015);
+		Livro testeLivro3 = new Livro("Algoritmos", "teste", 2015);
 		lista.add(testeLivro3);
 	}
 
