@@ -1,4 +1,4 @@
-package lista;
+package arvore;
 
 public class Livro {
 	private String titulo;
