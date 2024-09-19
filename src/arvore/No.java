@@ -2,37 +2,32 @@ package arvore;
 
 public class No {
 	private Livro livro;
-	private No esquerdo;
-	private No direito;
+	private No esquerda;
+	private No direita;
 
-	public No(Livro livro, No esquerdo, No direito) {
+	public No(Livro livro) {
 		this.livro = livro;
-		this.esquerdo = esquerdo;
-		this.direito = direito;
+		direita = null;
+		esquerda = null;
 	}
 
 	public Livro getLivro() {
 		return livro;
 	}
-
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
-
 	public No getEsquerdo() {
-		return esquerdo;
+		return esquerda;
 	}
-
 	public void setEsquerdo(No esquerdo) {
-		this.esquerdo = esquerdo;
+		this.esquerda = esquerdo;
 	}
-
 	public No getDireito() {
-		return direito;
+		return direita;
 	}
-
 	public void setDireito(No direito) {
-		this.direito = direito;
+		this.direita = direito;
 	}
 
 }
