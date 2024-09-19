@@ -1,35 +1,38 @@
 package lista;
 
-public class No<T> {
-	private T elemento;
-	private No<T> proximo;
+public class No {
+	private Livro livro;
+	private No esquerdo;
+	private No direito;
 
-	public No(T elemento) {
-		this.elemento = elemento;
-		this.proximo = null;
+	public No(Livro livro, No esquerdo, No direito) {
+		this.livro = livro;
+		this.esquerdo = esquerdo;
+		this.direito = direito;
 	}
 
-	public No(T elemento, No<T> proximo) {
-		this.elemento = elemento;
-		this.proximo = proximo;
+	public Livro getLivro() {
+		return livro;
 	}
 
-	public T getElemento() {
-		return elemento;
+	public void setLivro(Livro livro) {
+		this.livro = livro;
 	}
 
-	public void setElemento(T elemento) {
-		this.elemento = elemento;
+	public No getEsquerdo() {
+		return esquerdo;
 	}
 
-	public No<T> getProximo() {
-		return proximo;
+	public void setEsquerdo(No esquerdo) {
+		this.esquerdo = esquerdo;
 	}
 
-	public void setProximo(No<T> proximo) {
-		this.proximo = proximo;
+	public No getDireito() {
+		return direito;
 	}
 
-	
+	public void setDireito(No direito) {
+		this.direito = direito;
+	}
 
 }
