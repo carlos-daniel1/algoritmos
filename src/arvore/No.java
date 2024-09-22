@@ -29,5 +29,9 @@ public class No {
 	public void setDireito(No direito) {
 		this.direita = direito;
 	}
+	
+	public int getAnoLivro() {
+		return livro.getAnoPublicacao();
+	}
 
 }
