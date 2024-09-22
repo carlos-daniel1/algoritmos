@@ -30,6 +30,10 @@ public class No {
 		this.direita = direito;
 	}
 	
+	public String getTituloLivro() {
+		return livro.getTitulo();
+	}
+	
 	public int getAnoLivro() {
 		return livro.getAnoPublicacao();
 	}
