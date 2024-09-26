@@ -32,6 +32,46 @@ public class Arvore {
 		}
 		return no;
 	}
+	
+	public No remover(No no, Livro livro) {
+	    if (no == null) return null;
+
+	    if (livro.getTitulo().compareToIgnoreCase(no.getLivro().getTitulo()) > 0) {
+	        no.setDireito(remover(no.getDireito(), livro));
+	    } else if (livro.getTitulo().compareToIgnoreCase(no.getLivro().getTitulo()) < 0) {
+	        no.setEsquerdo(remover(no.getEsquerdo(), livro));
+	    } else {
+	        if (no.getEsquerdo() == null && no.getDireito() == null) {
+	            return null;
+	        } else if (no.getDireito() != null) {
+	            no.setLivro(sucessor(no));
+	            no.setDireito(remover(no.getDireito(), no.getLivro()));
+	        } else {
+	            no.setLivro(predecessor(no));
+	            no.setEsquerdo(remover(no.getEsquerdo(), no.getLivro()));
+	        }
+	    }
+
+	    return no;
+	}
+
+	private Livro sucessor(No no) {
+	    No atual = no.getDireito();
+	    while (atual.getEsquerdo() != null) {
+	        atual = atual.getEsquerdo();
+	    }
+	    return atual.getLivro();
+	}
+
+	private Livro predecessor(No no) {
+	    No atual = no.getEsquerdo();
+	    while (atual.getDireito() != null) {
+	        atual = atual.getDireito();
+	    }
+	    return atual.getLivro();
+	}
+
+
 
 	public String preOrder(No no) {
 		String msg = "";
@@ -43,91 +83,21 @@ public class Arvore {
 		return msg;
 	}
 
-	public Boolean searchByTitle(No no, String pesquisar) {
-		if (no == null) {
-			return false;
-		}
-		if (no.getTituloLivro().equalsIgnoreCase(pesquisar)) {
-			return true;
-		}
-		if (pesquisar.compareToIgnoreCase(no.getTituloLivro()) < 0) {
-			return searchByTitle(no.getEsquerdo(), pesquisar);
-		}
-		return searchByTitle(no.getDireito(), pesquisar);
-	}
-
-	//////
-
 	public No search(No no, String pesquisar) {
 		if (no == null) {
-			return null; // Livro não encontrado
+			return null;
 		}
 		if (no.getTituloLivro().equalsIgnoreCase(pesquisar)) {
-			return no; // Livro encontrado
+			return no;
 		}
 		if (pesquisar.compareToIgnoreCase(no.getTituloLivro()) < 0) {
-			return search(no.getEsquerdo(), pesquisar); // Busca na subárvore esquerda
+			return search(no.getEsquerdo(), pesquisar);
 		}
-		return search(no.getDireito(), pesquisar); // Busca na subárvore direita
+		return search(no.getDireito(), pesquisar);
 	}
+
 	
 
-	public No remove(Livro livro) throws Exception {
-		return remover(this.raiz, livro);
-	}
-
-	private No remover(No no, Livro livro) throws Exception {
-		if (no == null) {
-			throw new Exception("O livro não foi encontrado na biblioteca");
-		
-		}
-		else {
-			if((livro.getTitulo().compareToIgnoreCase(no.getLivro().getTitulo()))< 0){
-				no.setEsquerdo(remover(no.getEsquerdo(),livro));
-			}
-			else if ((livro.getTitulo().compareToIgnoreCase(no.getLivro().getTitulo()))> 0){
-				no.setDireito(remover(no.getDireito(), livro));
-			}
-			else if (no.getEsquerdo() != null && no.getDireito() != null){
-				No Min = findMin(no.getDireito());
-				no.setLivro(Min.getLivro());
-				no.setDireito(removeMin(no.getDireito()));
-			}
-			else {
-				if (no.getEsquerdo() != null){
-					no = no.getEsquerdo();
-				}
-				else {
-					no = no.getDireito();
-				}
-			}
-			return no;
-
-		}
-	}
-
-	private No removeMin(No No) {
-		if (No == null) {
-			return null;
-		} else if (No.getEsquerdo() != null) {
-			No.setEsquerdo(removeMin(No.getEsquerdo()));
-			return No;
-		} else {
-			return No.getDireito();
-		}
-		
-	}
-
-	private No findMin(No No) {
-		if (No != null) {
-			while (No.getEsquerdo() != null) {
-				No = No.getEsquerdo();
-			}
-		}
-		return No;
-	}
-
-	//////
 
 	public String inOrder(No no) {
 		String msg = "";
@@ -140,16 +110,20 @@ public class Arvore {
 	}
 
 	public void addLivros() {
-		Livro novoLivro = new Livro("Algoritmos E Lógica Da Programação", "Marcelo Marques Gomes, Marcio Vieira Soares e Marco A. Furlan de Souza", 2019);
+		Livro novoLivro = new Livro("Algoritmos e logica Da Programaçao",
+				"Marcelo Marques Gomes, Marcio Vieira Soares e Marco A. Furlan de Souza", 2019);
 		insert(raiz, novoLivro);
 
 		Livro novoLivro2 = new Livro("Java Como Programar", "Paul Deitel", 1996);
 		insert(raiz, novoLivro2);
 
-		Livro novoLivro3 = new Livro("Aprendendo Banco de Dados MYSQL: Do Básico ao Avançado", "Jorge Costa Leite Júnior", 2021);
+		Livro novoLivro3 = new Livro("Aprendendo Banco de Dados MYSQL: Do Básico ao Avançado",
+				"Jorge Costa Leite Júnior", 2021);
 		insert(raiz, novoLivro3);
 
-		Livro novoLivro4 = new Livro("Curso Intensivo de Python - 3ª edição: Uma Introdução Prática e Baseada em Projetos à Programação ", "Eric Matthes", 2023);
+		Livro novoLivro4 = new Livro(
+				"Curso Intensivo de Python - 3ª edição: Uma Introdução Prática e Baseada em Projetos à Programação ",
+				"Eric Matthes", 2023);
 		insert(raiz, novoLivro4);
 
 		Livro novoLivro5 = new Livro("A hora da estrela", "Clarice Lispector", 1977);
@@ -164,17 +138,18 @@ public class Arvore {
 		Livro novoLivro8 = new Livro("Jogos Vorazes", "Suzanne Collins", 2008);
 		insert(raiz, novoLivro8);
 
-
-		Livro novoLivro9 = new Livro("O Príncipe", "Nicolau Maquíavel", 1532);
+		Livro novoLivro9 = new Livro("O Principe", "Nicolau Maquíavel", 1532);
 		insert(raiz, novoLivro9);
 
 		Livro novoLivro10 = new Livro("O Capital", "Karl Marx", 1867);
 		insert(raiz, novoLivro10);
 
-		Livro novoLivro11 = new Livro("Código Limpo: Habilidades Práticas do Agile Software", "Robert Cecil Martin", 2012);
+		Livro novoLivro11 = new Livro("Codigo Limpo: Habilidades Práticas do Agile Software", "Robert Cecil Martin",
+				2012);
 		insert(raiz, novoLivro11);
 
-		Livro novoLivro12 = new Livro("Fundamentos da Arquitetura de Software: uma Abordagem de Engenharia: 1", "Mark RichardsMark Richards", 2024);
+		Livro novoLivro12 = new Livro("Fundamentos da Arquitetura de Software: uma Abordagem de Engenharia: 1",
+				"Mark RichardsMark Richards", 2024);
 		insert(raiz, novoLivro12);
 	}
 

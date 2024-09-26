@@ -45,7 +45,7 @@ public class Main {
 		if (titulo == null || titulo.equals(""))
 			return;
 
-		if (arvore.searchByTitle(arvore.getRaiz(), titulo)) {
+		if (arvore.search(arvore.getRaiz(), titulo)!= null) {
 			JOptionPane.showMessageDialog(null, "Livro já cadastrado no sistema!", "Livraria Deus é bom", 2);
 			return;
 		}
@@ -98,7 +98,7 @@ public class Main {
 		if (pesquisar == null)
 			return;
 
-		if (arvore.searchByTitle(arvore.getRaiz(), pesquisar)) {
+		if (arvore.search(arvore.getRaiz(), pesquisar) != null) {
 			JOptionPane.showMessageDialog(null, pesquisar.toUpperCase() + " encontrado", "Livraria Deus é bom", 1);
 			return;
 		}
@@ -108,7 +108,6 @@ public class Main {
 	}
 
 	private static void removerLivro() {
-		try {
 			if (arvore.getRaiz() == null) {
 				JOptionPane.showMessageDialog(null, "Não há livros cadastrados!", "Livraria Deus é bom", 1);
 				return;
@@ -124,16 +123,11 @@ public class Main {
 	
 			if (livroEncontrado != null) {
 				String tituloRemovido = livroEncontrado.getLivro().getTitulo();
-				arvore.remove(livroEncontrado.getLivro());
+				arvore.remover(arvore.getRaiz(), livroEncontrado.getLivro());
 				JOptionPane.showMessageDialog(null, tituloRemovido + " removido", "Livraria Deus é bom", 1);
 			} else {
 				JOptionPane.showMessageDialog(null, "Livro não encontrado!", "Livraria Deus é bom", 1);
 			}
-	
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro ao remover o livro: " + e.getMessage(), "Erro",
-					JOptionPane.ERROR_MESSAGE);
-		}
 	}
 	
 
