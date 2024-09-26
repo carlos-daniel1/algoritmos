@@ -35,18 +35,27 @@ public class Arvore {
 	
 	public No remover(No no, Livro livro) {
 	    if (no == null) return null;
+	    
+	    if(raiz.getEsquerdo() == null && raiz.getDireito() == null) {
+	    	raiz = null;
+	    	return raiz;
+	    }
 
 	    if (livro.getTitulo().compareToIgnoreCase(no.getLivro().getTitulo()) > 0) {
 	        no.setDireito(remover(no.getDireito(), livro));
+	        
 	    } else if (livro.getTitulo().compareToIgnoreCase(no.getLivro().getTitulo()) < 0) {
 	        no.setEsquerdo(remover(no.getEsquerdo(), livro));
+	        
 	    } else {
 	        if (no.getEsquerdo() == null && no.getDireito() == null) {
 	            return null;
+	            
 	        } else if (no.getDireito() != null) {
 	            no.setLivro(sucessor(no));
 	            no.setDireito(remover(no.getDireito(), no.getLivro()));
-	        } else {
+	       
+	        } else {	        	
 	            no.setLivro(predecessor(no));
 	            no.setEsquerdo(remover(no.getEsquerdo(), no.getLivro()));
 	        }

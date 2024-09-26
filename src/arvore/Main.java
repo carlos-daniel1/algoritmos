@@ -7,7 +7,7 @@ public class Main {
 	static int ordenar = 0;
 
 	public static void main(String[] args) {
-		arvore.addLivros();
+		//arvore.addLivros();
 		String opcao = "1";
 
 		while (!opcao.equals("6")) {
